@@ -29,3 +29,6 @@ export interface ServiceItem {
   description: string;
   features: string[];
 }
+
+export type PageId = 'home' | 'about' | 'skills' | 'projects' | 'services' | 'contact';
+

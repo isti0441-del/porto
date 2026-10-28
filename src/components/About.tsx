@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Globe, Compass, ExternalLink, Sparkles, Terminal, Palette, Zap } from 'lucide-react';
 
-export const About: React.FC = () => {
+interface AboutProps {
+  onNavigateContact?: () => void;
+}
+
+export const About: React.FC<AboutProps> = ({ onNavigateContact }) => {
   const [localTime, setLocalTime] = useState('');
 
   useEffect(() => {
@@ -42,7 +46,7 @@ export const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
+    <section id="about" className="py-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-14">
@@ -170,13 +174,14 @@ export const About: React.FC = () => {
             {/* Quick Contact Prompt */}
             <div className="mt-6 pt-4 border-t border-slate-900/10 flex items-center justify-between">
               <span className="text-xs text-slate-600 font-medium">Tertarik berdiskusi?</span>
-              <a
-                href="#contact"
-                className="text-xs font-semibold text-[#DB5184] hover:text-[#c43f71] flex items-center gap-1"
+              <button
+                type="button"
+                onClick={onNavigateContact}
+                className="text-xs font-semibold text-[#DB5184] hover:text-[#c43f71] flex items-center gap-1 border-none bg-transparent p-0 cursor-pointer"
               >
                 <span>Kirim Pesan</span>
                 <span>→</span>
-              </a>
+              </button>
             </div>
           </motion.div>
         </div>

@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
-import { MapPin, ArrowRight, Sparkles, Code2, Layers, Download, CheckCircle2 } from 'lucide-react';
+import { MapPin, ArrowRight, Sparkles, Code2, Layers, CheckCircle2 } from 'lucide-react';
 import { MagneticButton } from './MagneticButton.tsx';
 
 interface HeroProps {
@@ -9,6 +9,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreWork, onContactClick }) => {
+  const [imageError, setImageError] = useState(false);
   // 3D Tilt Card Interaction
   const cardRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
@@ -170,13 +171,24 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onContactClick }) => 
               className="relative w-full max-w-[390px] aspect-[4/5] rounded-3xl p-4 glass-panel border-2 border-white/80 shadow-2xl transition-shadow duration-300 hover:shadow-[#DB5184]/20"
             >
               {/* Inner Image Container */}
-              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-white/30 border border-white/60">
-                <img
-                  src="/src/assets/images/istiqomah_portrait_1793196372837.jpg"
-                  alt="Istiqomah - Frontend & Web Developer"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-white/40 border border-white/60">
+                {!imageError ? (
+                  <img
+                    src="/src/assets/images/istiqomah_portrait_1793196372837.jpeg"
+                    alt="Istiqomah - Frontend & Web Developer"
+                    onError={() => setImageError(true)}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-white/70 via-[#A8E088]/40 to-[#DB5184]/25 flex flex-col items-center justify-center p-6 text-center">
+                    <div className="w-20 h-20 rounded-2xl bg-white/85 border border-white flex items-center justify-center text-slate-800 font-serif text-3xl font-black shadow-md mb-3">
+                      IQ
+                    </div>
+                    <span className="font-serif font-bold text-xl text-slate-900">Istiqomah</span>
+                    <span className="text-xs text-slate-700 mt-1 font-medium">Frontend &amp; Web Developer</span>
+                  </div>
+                )}
 
                 {/* Ambient Soft Glass Gradient Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-white/10 pointer-events-none" />

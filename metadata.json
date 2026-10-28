@@ -2,5 +2,7 @@
   "name": "Istiqomah - Frontend & Web Developer",
   "description": "Portofolio profesional Istiqomah, Frontend & Web Developer dari Plered, Jawa Barat. Desain glassmorphism elegan, animasi interaktif, dan micro-interactions.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
