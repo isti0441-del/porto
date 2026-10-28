@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { MapPin, ArrowRight, Sparkles, Code2, Layers, CheckCircle2 } from 'lucide-react';
 import { MagneticButton } from './MagneticButton.tsx';
+import portraitPhoto from '../assets/images/istiqomah_portrait_1793196372837.jpeg';
 
 interface HeroProps {
   onExploreWork: () => void;
@@ -174,9 +175,17 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onContactClick }) => 
               <div className="relative w-full h-full rounded-2xl overflow-hidden bg-white/40 border border-white/60">
                 {!imageError ? (
                   <img
-                    src="/src/assets/images/istiqomah_portrait_1793196372837.jpeg"
+                    src={portraitPhoto}
                     alt="Istiqomah - Frontend & Web Developer"
-                    onError={() => setImageError(true)}
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      const publicUrl = '/images/istiqomah_portrait.jpeg';
+                      if (!target.src.endsWith(publicUrl)) {
+                        target.src = publicUrl;
+                      } else {
+                        setImageError(true);
+                      }
+                    }}
                     className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
